@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage[english, magyar]{babel}
+\usepackage{t1enc}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{lipsum}
+\usepackage{hulipsum}
+\usepackage{blindtext}
+\title{I. Gyakorlat}
+
+\begin{document}
+\maketitle
+\selectlanguage{magyar}
+\frenchspacing
+\texttt{\textbf{Ez az első szöveg.}}
+\\
+\textsc{\textit{Ez a második szöveg.}}
+\\
+\textsl{\textsf{Ez a harmadik szöveg.}}
+\\
+\emph{A \textit{fiú} \textbf{elment} a \textsc{boltba}.}
+\\
+\reflectbox{Ez a negyedik szöveg.}
+\\
+\reflectbox{\framebox{Ez a negyedik szöveg bekeretezve.}}
+\\
+\scalebox{1}[-1]{\scalebox{2.0}{Ez az ötödik szöveg.}}
+\\
+Ebben a szövegben egy szó \rotatebox{90}{elfordul}, és egy másik is \rotatebox{270}{elfordul}.
+\\
+\selectlanguage{english}{\colorbox{black}{\color{white}{\parbox{12cm}{"\blindtext[1]"}}}}
+\\
+\fcolorbox{red}{white}{\color{red}{Ez a hetedik szöveg, ami piros.}}
+\\
+\begin{flushright}
+\today{"\hulipsum[1]"}
+\end{flushright}
+\today{\selectlanguage{latin}{\linespread{2}{\lipsum[1]}}}
+\\
+
+\end{document}
+
