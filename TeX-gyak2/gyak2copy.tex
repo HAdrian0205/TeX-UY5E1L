@@ -1,0 +1,63 @@
+\documentclass[twoside, twocolumn]{article}
+\author{Hajdu Adrián}
+\usepackage[magyar]{babel}
+\usepackage{t1enc}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{lipsum}
+\title{II. Gyakorlat}
+\geometry{outer=5cm,top=3cm,bottom=3cm}
+\geometry{bindingoffset=1cm, columnsep=2cm}
+\geometry{marginparwidth=3cm,marginparsep=0.5cm}
+\pagestyle{myheadings}
+\markboth{II. Gyakorlat}{Hajdu Adrián}
+\begin{document}
+
+\setcounter{tocdepth}{5}1
+\setcounter{secnumdepth}{5}
+\maketitle
+
+\begin{abstract}
+\lipsum[1-2]
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\footnote{Footnote by Me}
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+\section{I. Section}
+\subsection{Sub-section(1)}
+\lipsum[1-4]
+\subsection{Sub-section(2)}
+\lipsum[1-6]
+\section[second]{II. Section}
+\subsection{Sub-section(1)}
+\subsubsection{Sub-sub-section}
+\paragraph{Paragrafus}
+\marginpar{Széljegyzet}
+\subparagraph{Sub-paragrafus}
+
+\appendix
+\newpage
+\section{New Section}
+\subsection{New Section's Subsection(1)}
+\marginpar{Széljegyzet}
+\begin{quote}
+\lipsum[1-2]
+\end{quote}
+\subsection{New Section's Subsection(2)}
+\begin{quotation}
+\lipsum[1-2]
+\end{quotation}
+\section{Second New Section}
+\subsection{New Section's Subsection(3)}
+\begin{verse}
+\lipsum[1]
+\end{verse}
+\subsection{New Section's Subsection(4)}
+\begin{verse}
+\lipsum[2]
+\end{verse}
+\end{document}
