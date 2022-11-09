@@ -1,0 +1,195 @@
+\documentclass{article}
+\usepackage[hungarian]{babel}
+\usepackage{t1enc}
+\usepackage{amsthm}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listings}
+\usepackage{lipsum}
+\usepackage{float}
+
+\theoremstyle{plain}
+\newtheorem{tetel}{Tétel} %+
+\newtheorem{lemm}[tetel]{Lemma} %+
+
+\theoremstyle{definition}
+\newtheorem{defe}{Definíció} %+
+
+\theoremstyle{remark}
+\newtheorem{fel}{Feladat}[section] %+
+
+\newtheorem*{megj}{Megjegyzés}
+
+\newfloat{forraskod}{hbt}{lop}
+\floatname{forraskod}{Forráskód}
+\floatname{algorithm}{Algoritmus}
+\renewcommand{\listalgorithmname}{Algoritmusok listája}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%
+%------------------%
+\listof{forraskod}{Verbatimok listája}
+%------------------%
+\listofalgorithms
+%------------------%
+\section{Első rész}
+\begin{fel}
+
+\end{fel}
+%
+\begin{fel}
+
+\end{fel}
+%
+\begin{fel}
+
+\end{fel}
+%%%%%%%%%%%
+\section{Második rész}
+\begin{tetel}
+\hphantom\\\\
+Ez a tétel első sora. \\
+Ez a tétel második sora. \verb|| \\
+Lorem ipsum.
+\end{tetel}
+%-
+\begin{proof}
+
+\end{proof}
+%-
+\begin{defe}
+
+\end{defe}
+%-
+\begin{tetel}
+\hphantom\\\\
+Ez a tétel első sora. \verb|| \\ 
+Ez a tétel második sora. \\
+Lorem ipsum.
+\end{tetel}
+%-
+\begin{defe}
+
+\end{defe}
+%-
+\begin{lemm}
+
+\end{lemm}
+%-
+\begin{fel}
+
+\end{fel}
+%-
+\begin{fel}
+
+\end{fel}
+%-
+\begin{fel}
+
+\end{fel}
+%------------------%
+\begin{megj}
+
+\end{megj}
+%------------------%
+\clearpage
+\begin{forraskod}
+\caption{Első verbatim}
+\begin{verbatim}
+\begin{tetel}
+Ez a tétel első sora.
+Ez a tétel második sora.
+Lorem ipsum.
+\end{tetel}
+\end{verbatim}
+%-
+\end{forraskod}
+\begin{forraskod}
+\caption{Második verbatim}
+\begin{verbatim}
+\begin{enumerate}
+\item Első
+\item Item második
+\end{enumerate}
+\end{verbatim}
+\end{forraskod}
+\lipsum[1-3]
+\newpage
+%------------------%
+\begin{forraskod}
+\caption{Python-kód}
+\lstinputlisting[language=python, tabsize=4, numbers=left, stepnumber=3, frame=shadowbox]{forrasfajlok/binsearch.py}
+\end{forraskod}
+\clearpage
+%------------------%
+\begin{algorithm}
+\caption{Gyorsrendezés}
+\begin{algorithmic}[2]
+\Procedure{QUICKSORT}{@A,a,b}
+\Require A írható tömb
+\Require 1 $\leq$  a $\leq$ b $\leq$ Hossz[A] indexek
+\Ensure a-b indextartományt rendezzük
+\If{a=b}
+\State\Return A \Comment egyelemű tömb mindig rendezett
+\Else
+\State\Call{FELOSZT}{@A,a,b,A(a),@q} \Comment k-A(a), a tartomány első eleme
+\State\Call{QUICKSORT}{@A,a,q}
+\State\Call{QUICKSORT}{@A,q+1,b}
+\State\Return A
+\EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+%-------------------%
+\begin{algorithm}
+\begin{algorithmic}[2]
+\Procedure{FELOSZT}{@A,a,b,k,@q}
+\Require A írható tömb
+\Require 1 $\leq$  a $\leq$ b $\leq$ Hossz[A] indexek
+\Require k A-beli kulcs
+\Ensure A átrendezése és q választása úgy, hogy: a - q indextartomány elemei $\leq$ k, (q+1) - b indextartomány elemei $\geq$ k
+\State i $\leftarrow$ a-1
+\State j $\leftarrow$ b+1
+\While{i<j} \Comment ekvivalens: while true do...
+\Repeat
+\State INC(i)
+\Until{A(i) $\geq$ k}
+\Repeat
+\State DEC(j)
+\Until{A(j) $\leq$ k}
+\If{i < j}
+\State A(i) $\Leftrightarrow$ A(j) csere
+\Else
+\State q $\leftarrow$ j
+\State \Return (A,q)
+\EndIf
+\EndWhile
+\EndProcedure
+\caption{Felosztás}
+\end{algorithmic}
+\end{algorithm}
+\clearpage
+%------------------%
+\algblockdefx[owndowhile]{Do}{While}{\textbf{do}}[1]{\textbf{while}~#1~}
+
+\begin{algorithmic}
+\Do 
+\State INC(i)
+\While{a $\ne$ i}
+\end{algorithmic}
+%------------------%
+\vspace{0.5cm}
+\algblockdefx[ownswitch]{Switch}{EndSwitch}[1]{\textbf{switch}~#1~}{}
+
+\algcblockdefx[ownswitch]{ownswitch}{Case}{EndSwitch}[2]{~~~~\textbf{case} #1\textbf{:}~#2~}{}
+
+\begin{algorithmic}
+\Switch{a = b}
+\Case {true}{INC(a)}
+\Case {false}{DEC(b)}
+\EndSwitch
+
+\end{algorithmic}
+%%%%%%%%%%%%%%%%%
+\end{document}
+
