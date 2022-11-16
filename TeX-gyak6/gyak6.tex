@@ -1,0 +1,176 @@
+\documentclass{article}
+\usepackage[magyar]{babel}
+\usepackage{t1enc}
+\frenchspacing
+\usepackage{amsmath,stackengine}
+\stackMath
+\usepackage{amsfonts, amssymb}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+
+\begin{document}
+\section{Bevezető}
+\begin{enumerate}[label=\alph*)]
+\item Az $\dfrac{1}{n^2}$ sorösszege:
+\begin{equation}
+\sum_{n=1}^{\infty} = \dfrac{\pi^2}{6}.
+\end{equation}
+\item Az $n!$ ($n$ faktoriális) a számok szorzata 1-től $n$-ig, azaz
+\begin{equation}
+n! := \prod_{k=1}^n k = 1\cdot 2 \cdot ... \cdot n.
+\end{equation}
+Konvenció szerint $0! = 1.$
+\item Legyen $0 \leq k \leq n$. A binomiális együttható
+\begin{equation}
+\begin{pmatrix}
+n \\
+k
+\end{pmatrix}
+:= \dfrac{n!}{k! \cdot (n-k)!}, 
+\end{equation}
+ahol a faktoriálist (\textcolor{red}{1}) szerint definiáljuk.
+
+\item Az előjel- azaz szignum függvényt a következőképpen definiáljuk:
+\begin{equation}
+sgn(x) := 
+\begin{cases}
+1, & \text{ha x > 0,} \\
+0, & \text{ha x = 0,} \\
+-1, & \text{ha x < 0.}
+\end{cases}
+\end{equation}
+\end{enumerate}
+\newpage
+\section{Determináns}
+\begin{enumerate}[label=\alph*)] 
+\item Legyen
+\begin{equation}
+[n]:= \{ 1,2,\cdots, n \}
+\end{equation}
+a természetes számok halmaza 1-től $n$-ig.
+\item Egy n-edrendű \textit{permutáció} $\sigma$ egy bijekció $[n]$-ből $[n]$-be. Az $n$-edrendű permutációk halmazát, az ún. szimmetrikus csoportot, $S_n$-nel jelöljük.
+\item Egy $\sigma \in S_n$ permutációban inverziónak nevezünk egy $(i,j)$ párt, ha $i < j$ de $\sigma_i > \sigma_j$.
+\item Egy $\sigma \in S_n$ permutáció paritásának az inverziók számát nevezzük:
+\begin{equation}
+I(\sigma) := 
+\begin{vmatrix}
+\{(i,j)\text{ | }i,j \in [n], i<j, \sigma i> \sigma j\} 
+\end{vmatrix}
+\end{equation}
+\item Legyen $A \in \mathbb{R}^{n\times n}$, egy $n\times n$-es (négyzetes) valós mátrix:
+\begin{equation}
+A=
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{pmatrix}
+\end{equation}
+Az $A$ mátrix determinánsát a következőképpen definiáljuk:
+\begin{equation}
+det(A) = 
+\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix} := \sum_{\sigma \in S_n} (-1)^{I(\sigma)} \prod_{i=1}^n a_{i\sigma_i}
+\end{equation}
+\end{enumerate}
+\newpage
+\section{Logikai azonosság}
+Tekintsük az $L = \{0,1\}$ halmazt, és rajta a következő, igazságtáblával definiált műveleteket:
+\begin{equation}
+\begin{tabular}{c||c}
+x & $\bar{x}$ \\ \hline
+0 & 1 \\
+1 & 0 \\
+\end{tabular} \hspace{0.5cm}
+\begin{tabular}{cc||c|c|c}
+x & y & x $\vee$ y & x $\wedge$ y & x $\rightarrow$ y \\ \hline
+0 & 0 & 0 & 0 & 1 \\
+0 & 1 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 & 0 \\
+1 & 1 & 1 & 1 & 1
+\end{tabular}
+\end{equation}
+Legyenek $a,b,c,d \in L$. Belátjuk a következő azonosságot:
+\begin{equation}
+(a \wedge b \wedge c) \rightarrow d = a \rightarrow (b \rightarrow (c \rightarrow d)).
+\end{equation}
+A következő azonosságokat bizonyítás nélkül használjuk:
+\begin{equation}
+x \rightarrow y = \bar{x} \vee y
+\end{equation}
+\begin{equation}
+\overline{x \vee y} = \bar{x} \wedge \bar{y} \hspace{0.5cm}
+\overline{x \wedge y} = \bar{x} \vee \bar{y}
+\end{equation}
+A (\textcolor{red}{10}) bal oldala, (\textcolor{red}{11}) felhasználásával
+\begin{equation}
+(a \wedge b \wedge c) \rightarrow d \underset{(\textcolor{red}{11})}{=} \overline{a \wedge b \wedge c} \vee d \underset{(\textcolor{red}{12})}{=} (\bar{a} \vee \bar{b} \vee \bar{c}) \vee d.
+\end{equation}
+A (\textcolor{red}{10}) jobb oldala, (\textcolor{red}{11}) ismételt felhasználásával
+\begin{equation}
+\begin{aligned}
+a \rightarrow (b \rightarrow (c \rightarrow d)) &= \bar{a} \vee (b \rightarrow  (c \rightarrow d))\\ 
+&= \text{	} \bar{a} \vee (\bar{b} \vee (c \rightarrow d))\\
+&= \text{	} \bar{a} \vee (\bar{b} \vee (\bar{c} \vee v)),
+\end{aligned}
+\end{equation}
+ami a $\vee$ asszociativitása miatt egyenlő (\textcolor{red}{13}) egyenlettel.
+
+\section{Binomiális tétel}
+\begin{subequations}
+\begin{align}
+(a+b)^{n+1} &= (a+b) \cdot 
+\left(
+\sum_{k=0}^{n}
+\begin{pmatrix}
+n \\
+k
+\end{pmatrix}
+a^{n-k}b^k
+\right) \\
+&= \cdots \nonumber\\
+&= \sum_{k=0}^n
+\begin{pmatrix}
+n \\
+k
+\end{pmatrix}
+a^{(n+1)-k}b^{k} + \sum_{k=1}^{n+1}
+\begin{pmatrix}
+n \\
+k-1
+\end{pmatrix}
+a^{(n+1)-k}b^{k} \\
+&= \cdots \nonumber\\
+&= 
+\begin{pmatrix}
+n+1 \\
+0
+\end{pmatrix}
+a^{n+1-0}b^0 + \sum_{k=1}^{n}
+\begin{pmatrix}
+n+1 \\
+k
+\end{pmatrix}
+a^{(n+1)-k}b^{k} \\ \nonumber
+&+
+\begin{pmatrix}
+n+1 \\
+n+1
+\end{pmatrix}
+a^{n+1-(n+1)}b^{n+1}. \\
+&= \sum_{k=0}^{n+1}
+\begin{pmatrix}
+n+1 \\
+k
+\end{pmatrix}
+a^{(n+1)-k}b^k.
+\end{align} 
+\end{subequations}
+\end{document}
